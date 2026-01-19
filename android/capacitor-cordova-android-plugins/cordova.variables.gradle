@@ -1,0 +1,6 @@
+ext {
+    cordovaCompileSdkVersion = 34
+    cordovaMinSdkVersion = 23
+    cordovaTargetSdkVersion = 34
+    cordovaBuildToolsVersion = "34.0.0"
+}
