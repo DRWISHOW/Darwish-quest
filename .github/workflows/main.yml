@@ -21,7 +21,8 @@ jobs:
         run: npm ci
 
       - name: Sync Capacitor Android
-        run: npx cap sync android
+        run: - name: Sync Capacitor Android
+  run: npx --yes @capacitor/cli cap sync android
 
       - name: Setup Java
         uses: actions/setup-java@v4
