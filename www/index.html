@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0B1220" />
+  <title>LexiQuest — TOEFL 400</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+<body>
+  <div id="app" class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">LQ</div>
+        <div>
+          <div class="brandTitle">LexiQuest</div>
+          <div class="brandSub">رحلة 400 كلمة TOEFL — أوفلاين</div>
+        </div>
+      </div>
+      <div class="hud">
+        <div class="pill" title="سلسلة الأيام">
+          <span class="pillLabel">🔥</span>
+          <span id="streak">0</span>
+        </div>
+        <div class="pill" title="النقاط">
+          <span class="pillLabel">⚡</span>
+          <span id="xp">0</span>
+        </div>
+        <button id="btnSettings" class="iconBtn" title="الإعدادات" aria-label="الإعدادات">⋯</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="card session">
+        <div class="sessionHeader">
+          <div>
+            <div class="kicker">جلسة اليوم</div>
+            <div id="dayTitle" class="h1">اليوم 1 — البداية</div>
+          </div>
+          <div class="progressWrap">
+            <div class="progressMeta">
+              <span id="progressText">0/0</span>
+              <span class="muted">إتقان</span>
+            </div>
+            <div class="progressBar"><div id="progressFill" class="progressFill"></div></div>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="cross">الشبكة</button>
+          <button class="tab" data-tab="review">مراجعة سريعة</button>
+          <button class="tab" data-tab="stats">إنجازات</button>
+        </div>
+
+        <div class="tabPanel" data-panel="cross">
+          <div class="crossWrap">
+            <div class="crossLeft">
+              <div class="crossHeader">
+                <div class="h2">شبكة الربط</div>
+                <div class="crossActions">
+                  <button id="btnHintLetter" class="btn">تلميح حرف</button>
+                  <button id="btnHintWord" class="btn btnGhost">حلّ الكلمة</button>
+                </div>
+              </div>
+              <div id="grid" class="grid" aria-label="شبكة الكلمات"></div>
+              <div class="mobileTip muted">اضغط خلية ثم اكتب. اضغط مرة ثانية لتغيير الاتجاه.</div>
+              <div class="bottomActions">
+                <button id="btnCheck" class="btnPrimary">تحقق</button>
+                <button id="btnNew" class="btnSecondary">شبكة جديدة</button>
+              </div>
+            </div>
+
+            <aside class="crossRight">
+              <div class="clueBox">
+                <div class="clueHeader">
+                  <div class="h2">التلميحات</div>
+                  <div class="muted" id="clueMeta">اختر كلمة من الشبكة</div>
+                </div>
+                <div id="clueMedia" class="clueMedia hidden"></div>
+                <div id="clueText" class="clueText">—</div>
+                <div class="clueTools">
+                  <button id="btnPlay" class="btn btnGhost" disabled>🔊 نطق</button>
+                  <button id="btnLink" class="btn">اربطها</button>
+                </div>
+              </div>
+
+              <div class="listBox">
+                <div class="listHeader">
+                  <div class="h2">قائمة الكلمات</div>
+                  <div class="muted" id="wordCount">0</div>
+                </div>
+                <div id="clueList" class="clueList"></div>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <div class="tabPanel hidden" data-panel="review">
+          <div class="reviewGrid" id="reviewGrid"></div>
+        </div>
+
+        <div class="tabPanel hidden" data-panel="stats">
+          <div class="stats">
+            <div class="statCard">
+              <div class="statBig" id="mastered">0</div>
+              <div class="muted">كلمات متقنة</div>
+            </div>
+            <div class="statCard">
+              <div class="statBig" id="due">0</div>
+              <div class="muted">مراجعة مستحقة</div>
+            </div>
+            <div class="statCard">
+              <div class="statBig" id="accuracy">0%</div>
+              <div class="muted">دقة اليوم</div>
+            </div>
+          </div>
+          <div class="muted" style="margin-top:10px; line-height:1.7">
+            هذه نسخة أوفلاين مصممة لتُهدى للمعهد. كل شيء محفوظ على جهاز الطالب (بدون إنترنت).
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <div id="settings" class="modal hidden" role="dialog" aria-modal="true">
+      <div class="modalCard">
+        <div class="modalHeader">
+          <div class="h2">الإعدادات</div>
+          <button id="btnCloseSettings" class="iconBtn" aria-label="إغلاق">✕</button>
+        </div>
+        <div class="formRow">
+          <label>ابدأ الرحلة من يوم:</label>
+          <input id="startDay" type="date" />
+        </div>
+        <div class="formRow">
+          <label>حجم الجلسة:</label>
+          <select id="sessionSize">
+            <option value="10">خفيفة (10 كلمات)</option>
+            <option value="14" selected>قياسية (14 كلمة)</option>
+            <option value="18">مكثفة (18 كلمة)</option>
+          </select>
+        </div>
+        <div class="modalActions">
+          <button id="btnReset" class="btnDanger">إعادة ضبط التقدم</button>
+          <button id="btnSaveSettings" class="btnPrimary">حفظ</button>
+        </div>
+      </div>
+      <div class="backdrop"></div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

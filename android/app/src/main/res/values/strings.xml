@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">LexiQuest TOEFL 400</string>
+    <string name="title_activity_main">LexiQuest TOEFL 400</string>
+    <string name="package_name">com.pro.lexiquest</string>
+    <string name="custom_url_scheme">com.pro.lexiquest</string>
+</resources>
