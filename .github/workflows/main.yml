@@ -21,7 +21,6 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-
 - name: Install TypeScript (needed for capacitor.config.ts)
         run: npm i -D typescript
 
